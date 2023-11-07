@@ -191,7 +191,7 @@ ds
 
 
 ################################################################################
-####### Example 4 : 학교 홈페이지 게시물 제목 읽어 data set 생성 
+####### Example 4 : 웹 페이지 내용을 읽어, 사용된 명사/단어 시각화
 
 url <- "https://encykorea.aks.ac.kr/Article/E0033776"
 html <- read_html(url)
@@ -239,8 +239,17 @@ ggplot(top20, aes(x = reorder(noun, n), y = n)) +
 
 # 워드 클라우드
 pal <- brewer.pal(6, "Dark2")
-windowsFonts(malgun=windowsFont("맑은 고딕"))
+#windowsFonts(malgun=windowsFont("맑은 고딕"))
   
-set.seed(1000)
-wordcloud(words=noun_space$noun, freq=noun_space$n, colors=pal, min.freq=1, random.order=F, family="mono")
+#set.seed(1000)
+#wordcloud(words=noun_space$noun, freq=noun_space$n, colors=pal, min.freq=1, random.order=F, family="mono")
+#wordcloud(words=noun_space$noun, freq=noun_space$n, scale=c(10, 0.1), rot.per=0.0, min.freq=1, random.order=FALSE, col=pal)
+#wordcloud(freq$word, freq=freq$n, scale=c(10, 0.1), rot.per=0.0, min.freq=1, random.order=FALSE, col=pal)
 
+layout(matrix(c(1, 2), nrow=2), heights=c(1, 4))
+par(mar=rep(0, 4))
+plot.new()
+
+wordcloud(words=noun_space$noun, freq=noun_space$n, scale=c(10, 0.1), rot.per=0.0, min.freq=1, 
+            random.order=FALSE, col=pal)
+  
